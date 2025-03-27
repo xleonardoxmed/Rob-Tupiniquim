@@ -30,7 +30,7 @@ namespace RobôTupiniquim.ConsoleApp
                 }
                 do
                 {
-                    Console.Write($"{ask}: ");
+                    Console.Write($"\n{ask}: ");
                     string entry = Console.ReadLine()!;
                     success = int.TryParse(entry, out answer);
 
@@ -50,14 +50,18 @@ namespace RobôTupiniquim.ConsoleApp
             }
             area = width * heigth;
             Console.WriteLine($"\nA área escolhida é de: {area}m²");
-
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine("\nExemplo ilustrativo: ");
             Console.WriteLine("  ------------");
             Console.WriteLine(" |            |");
             Console.WriteLine($" |            | {heigth}m");
             Console.WriteLine(" |            |");
             Console.WriteLine("  ------------");
             Console.WriteLine($"       {width}m");
-
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine("Pressione qualquer tecla para jogar");
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.ReadKey();
         }
         public static void ComandValidation()
         {
