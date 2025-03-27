@@ -22,11 +22,11 @@ namespace RobôTupiniquim.ConsoleApp
             {
                 if (checks == 0)
                 {
-                    ask = "LARGURA";               
+                    ask = "LARGURA";
                 }
                 else
                 {
-                    ask = "ALTURA";             
+                    ask = "ALTURA";
                 }
                 do
                 {
