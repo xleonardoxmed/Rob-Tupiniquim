@@ -50,6 +50,14 @@ namespace RobôTupiniquim.ConsoleApp
             }
             area = width * heigth;
             Console.WriteLine($"\nA área escolhida é de: {area}m²");
+
+            Console.WriteLine("  ------------");
+            Console.WriteLine(" |            |");
+            Console.WriteLine($" |            | {heigth}m");
+            Console.WriteLine(" |            |");
+            Console.WriteLine("  ------------");
+            Console.WriteLine($"       {width}m");
+
         }
         public static void ComandValidation()
         {
