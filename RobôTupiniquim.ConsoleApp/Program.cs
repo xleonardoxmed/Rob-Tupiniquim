@@ -7,18 +7,17 @@
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("=======================ROBÔ TUPINIQUIM=====================================");
-                Console.WriteLine("A exploração do cosmos é uma viagem para autodescoberta.");
-                Console.WriteLine("===========================================================================");
+                GameVisual.ShowPannel();
                 Console.WriteLine("\n---------------------------------------------------------------------------");
                 Console.WriteLine("Escolha o a LARGURA e a ALTURA do terreno retangular que deseja explorar.");
                 Console.WriteLine("---------------------------------------------------------------------------");
                 Console.WriteLine("Você recebeu permissão para usar DOIS ROBÔS de para sua aventura! Vamos lá!");
                 Console.WriteLine("---------------------------------------------------------------------------");
 
-                KindOfValidation.AreaValidation();
+                KindOfValidation.AreaValidationAndDraw();
+                GameVisual.ShowPannel();
+                GameVisual.ShowRules();
 
-                
                 Console.WriteLine("\n===========================================================================");
                 Console.Write("Deseja explorar uma nova áera? (S/N): ");
                 Console.WriteLine("\n===========================================================================");

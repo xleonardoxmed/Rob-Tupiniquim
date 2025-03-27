@@ -10,7 +10,7 @@ namespace RobôTupiniquim.ConsoleApp
     class KindOfValidation
     {
         public static int area;
-        public static void AreaValidation()
+        public static void AreaValidationAndDraw()
         {
             bool success;
             int width = 0;
@@ -30,7 +30,7 @@ namespace RobôTupiniquim.ConsoleApp
                 }
                 do
                 {
-                    Console.Write($"\n{ask}: ");
+                    Console.Write($"\n                             {ask}: ");
                     string entry = Console.ReadLine()!;
                     success = int.TryParse(entry, out answer);
 
@@ -49,19 +49,20 @@ namespace RobôTupiniquim.ConsoleApp
                     heigth = answer;
             }
             area = width * heigth;
-            Console.WriteLine($"\nA área escolhida é de: {area}m²");
+            Console.WriteLine($"\n                    A área escolhida é de: {area}m²");
             Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine("\nExemplo ilustrativo: ");
-            Console.WriteLine("  ------------");
-            Console.WriteLine(" |            |");
-            Console.WriteLine($" |            | {heigth}m");
-            Console.WriteLine(" |            |");
-            Console.WriteLine("  ------------");
-            Console.WriteLine($"       {width}m");
+            Console.WriteLine("\n                        Exemplo ilustrativo: ");
+            Console.WriteLine("                           ------------");
+            Console.WriteLine("                          |            |");
+            Console.WriteLine($"                          |            | {heigth}m");
+            Console.WriteLine("                          |            |");
+            Console.WriteLine("                           ------------");
+            Console.WriteLine($"                               {width}m");
             Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine("Pressione qualquer tecla para jogar");
+            Console.WriteLine("                 Digite qualquer tecla para continuar");
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.ReadKey();
+            Console.Clear();
         }
         public static void ComandValidation()
         {
