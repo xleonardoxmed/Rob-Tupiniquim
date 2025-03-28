@@ -61,7 +61,7 @@ namespace RobôTupiniquim.ConsoleApp
             }
 
         }
-        public static void FadingStartButton()
+        public static void StartScreen()
         {
             string startButton = "Pressione Qualquer Tecla para Jogar";
             int duration = 800;
@@ -69,12 +69,8 @@ namespace RobôTupiniquim.ConsoleApp
 
             while (!startGame)
             {
+                startGame = CheckKey(startGame);
 
-                if (Console.KeyAvailable)
-                {
-                    Console.ReadKey(true);
-                    startGame = true;
-                }
                 Console.Clear();
                 int consoleWidth = Console.WindowWidth;
                 int consoleHeigth = Console.WindowHeight;
@@ -85,13 +81,9 @@ namespace RobôTupiniquim.ConsoleApp
                 Thread.Sleep(duration);
                 Console.Clear();
 
-                if (Console.KeyAvailable)
-                {
-                    Console.ReadKey(true);
-                    startGame = true;
-                }
-
+                startGame = CheckKey(startGame);
             }
+            ShowPannel();
         }
         public static bool CheckKey(bool startGame)
         {

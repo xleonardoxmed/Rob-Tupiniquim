@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Formats.Asn1;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,10 @@ using System.Threading.Tasks;
 namespace RobôTupiniquim.ConsoleApp
 {
     class KindOfValidation
-    {
+    {   
+        public static int Xcoordenate;
+        public static int Ycoordenate;
+        public static char direction;
         public static int area;
         public static void AreaValidationAndDraw()
         {
@@ -64,8 +68,60 @@ namespace RobôTupiniquim.ConsoleApp
             Console.ReadKey();
             Console.Clear();
         }
-        public static void ComandValidation()
+
+        public static void AskValidCommands()
         {
+            String[] locationAndDirection;
+            int robot;
+            bool success = false;
+
+            for (int checks = 0; checks <= 1; checks++)
+            {
+                if (checks == 0)
+                {
+                    robot = 1;
+                }
+                else
+                {
+                    robot = 2;
+                }
+                do
+                {
+                    Console.Write($"Insira a COORDENADA INICIAL do Robô #{robot} (X,Y) e a DIREÇÃO (N,S,L, O): ");
+
+                    locationAndDirection = Console.ReadLine()!.Split(' ');
+
+                    if (locationAndDirection.Length != 3)
+                    {
+                        Console.WriteLine("---------------------------------------------------------------------------");
+                        Console.WriteLine("Erro! Insira comandos válidos separados por espaços. EX: (Número Número Letra).");
+                        Console.WriteLine("---------------------------------------------------------------------------");
+                        Console.WriteLine("Apenas números inteiros permitidos");
+                        Console.WriteLine("---------------------------------------------------------------------------");
+                        continue;
+                    }
+                    
+                    success =
+                        int.TryParse(locationAndDirection[0], out Xcoordenate) &&
+                        int.TryParse(locationAndDirection[1], out Ycoordenate) &&
+                        locationAndDirection[2].Length == 1 &&
+                        "NSLO".Contains(Char.ToUpper(locationAndDirection[2][0]));
+
+                    if (!success || Xcoordenate < 0 || Ycoordenate < 0)
+                    {
+                        Console.WriteLine("---------------------------------------------------------------------------");
+                        Console.WriteLine("Erro! Insira comandos válidos separados por espaços. EX: (Número Número Letra).");
+                        Console.WriteLine("---------------------------------------------------------------------------");
+                        Console.WriteLine("Apenas números inteiros permitidos");
+                        continue;
+                    }
+
+                    direction = Char.ToUpper(locationAndDirection[2][0]);
+
+                } while (!success || Xcoordenate < 0 || Ycoordenate < 0);
+
+            }
+
 
         }
 
