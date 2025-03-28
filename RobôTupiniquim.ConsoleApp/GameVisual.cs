@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace RobôTupiniquim.ConsoleApp
 {
@@ -17,7 +19,7 @@ namespace RobôTupiniquim.ConsoleApp
         }
         public static void ShowRules()
         {
-            
+
             Console.WriteLine("\n---------------------------------------------------------------------------");
             Console.WriteLine("Deseja ler as regras do jogo? (Recomendado para a primeira jogada)");
             Console.WriteLine("---------------------------------------------------------------------------");
@@ -67,21 +69,38 @@ namespace RobôTupiniquim.ConsoleApp
 
             while (!startGame)
             {
+
+                if (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                    startGame = true;
+                }
                 Console.Clear();
                 int consoleWidth = Console.WindowWidth;
                 int consoleHeigth = Console.WindowHeight;
-
                 int Xposition = (consoleWidth - startButton.Length) / 2; // Centro
                 int Yposition = consoleHeigth - 3; // Fundo, 3 pixels acima
-                Console.Clear();
                 Console.SetCursorPosition(Xposition, Yposition); // Inicia o cursor onde o startButton deve ficar           
                 Console.Write(startButton); // efeito de sumir/reaparecer
                 Thread.Sleep(duration);
                 Console.Clear();
-                Console.ReadKey();
+
+                if (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                    startGame = true;
+                }
+
+            }
+        }
+        public static bool CheckKey(bool startGame)
+        {
+            if (Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
                 startGame = true;
             }
-            
+            return startGame;
         }
     }
 }

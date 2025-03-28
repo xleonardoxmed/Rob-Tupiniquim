@@ -19,6 +19,13 @@
                 GameVisual.ShowRules();
                 GameVisual.FadingStartButton();
 
+                /*for (int robot = 1; robot <= 3; robot++)
+                {
+
+                    Console.WriteLine($"Insira a coordenada inicial do Robô #{robot} e a direção: ");
+
+                }
+                */
 
                 Console.WriteLine("\n===========================================================================");
                 Console.Write("Deseja explorar uma nova áera? (S/N): ");
