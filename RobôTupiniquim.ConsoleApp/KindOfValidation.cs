@@ -72,6 +72,7 @@ namespace RobôTupiniquim.ConsoleApp
         public static void AskValidCommands()
         {
             String[] locationAndDirection;
+            String[] movements;
             int robot;
             bool success = false;
 
@@ -119,6 +120,24 @@ namespace RobôTupiniquim.ConsoleApp
                     direction = Char.ToUpper(locationAndDirection[2][0]);
 
                 } while (!success || Xcoordenate < 0 || Ycoordenate < 0);
+
+                do
+                {
+                    Console.Write($"Insira os MOVIMENTOS do Robô #{robot} (E, D M): ");
+                    movements = Console.ReadLine()!.Split(' ');
+
+                    success = movements.All(m => "EDM".Contains(char.ToUpper(m[0])));
+
+                    if (!success)
+                    {
+                        Console.WriteLine("---------------------------------------------------------------------------");
+                        Console.WriteLine("Erro! Apenas os movimentos 'E' (Esquerda), 'D' (Direita), e 'M' (Mover) são válidos.");
+                        Console.WriteLine("---------------------------------------------------------------------------");
+                        Console.WriteLine("Apenas números inteiros permitidos");
+                        continue;
+                    }
+
+                } while (!success);
 
             }
 

@@ -64,7 +64,7 @@ namespace RobôTupiniquim.ConsoleApp
         public static void StartScreen()
         {
             string startButton = "Pressione Qualquer Tecla para Jogar";
-            int duration = 800;
+            int duration = 600;
             bool startGame = false;
 
             while (!startGame)
