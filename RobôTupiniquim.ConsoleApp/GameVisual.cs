@@ -16,7 +16,8 @@ namespace RobôTupiniquim.ConsoleApp
             Console.WriteLine("===========================================================================");
         }
         public static void ShowRules()
-        {          
+        {
+            
             Console.WriteLine("\n---------------------------------------------------------------------------");
             Console.WriteLine("Deseja ler as regras do jogo? (Recomendado para a primeira jogada)");
             Console.WriteLine("---------------------------------------------------------------------------");
@@ -42,7 +43,7 @@ namespace RobôTupiniquim.ConsoleApp
                 Console.WriteLine("               (M => Mover o robô para frente (Na direção em que estiver apontando)");
                 Console.WriteLine("---------------------------------------------------------------------------");
                 Console.WriteLine("     Exemplo de entrada: 1 2 N => Entende-se como Posição = (1,2) e Direção = Norte");
-                Console.WriteLine("     Exemplo de movimento: EEMMMD => Entende-se girar em 90° duas vezes,");
+                Console.WriteLine("     Exemplo de movimento: EEMMMD => Entende-se girar em 90°para a esquerda duas vezes,");
                 Console.WriteLine("     mover para frente três vezes e girar para a direita.");
                 Console.WriteLine("     \nIsso resultará numa nova coordenada para cada robô após seus comandos.");
                 Console.WriteLine("---------------------------------------------------------------------------");
@@ -51,6 +52,36 @@ namespace RobôTupiniquim.ConsoleApp
                 Console.Clear();
                 ShowPannel();
             }
+            else
+            {
+                Console.Clear();
+                ShowPannel();
+            }
+
+        }
+        public static void FadingStartButton()
+        {
+            string startButton = "Pressione Qualquer Tecla para Jogar";
+            int duration = 800;
+            bool startGame = false;
+
+            while (!startGame)
+            {
+                Console.Clear();
+                int consoleWidth = Console.WindowWidth;
+                int consoleHeigth = Console.WindowHeight;
+
+                int Xposition = (consoleWidth - startButton.Length) / 2; // Centro
+                int Yposition = consoleHeigth - 3; // Fundo, 3 pixels acima
+                Console.Clear();
+                Console.SetCursorPosition(Xposition, Yposition); // Inicia o cursor onde o startButton deve ficar           
+                Console.Write(startButton); // efeito de sumir/reaparecer
+                Thread.Sleep(duration);
+                Console.Clear();
+                Console.ReadKey();
+                startGame = true;
+            }
+            
         }
     }
 }

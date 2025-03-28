@@ -17,6 +17,8 @@
                 KindOfValidation.AreaValidationAndDraw();
                 GameVisual.ShowPannel();
                 GameVisual.ShowRules();
+                GameVisual.FadingStartButton();
+
 
                 Console.WriteLine("\n===========================================================================");
                 Console.Write("Deseja explorar uma nova áera? (S/N): ");
