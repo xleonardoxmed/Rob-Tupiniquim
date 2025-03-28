@@ -88,7 +88,7 @@ namespace RobôTupiniquim.ConsoleApp
                 }
                 do
                 {
-                    Console.Write($"Insira a COORDENADA INICIAL do Robô #{robot} (X,Y) e a DIREÇÃO (N,S,L, O): ");
+                    Console.Write($"\nInsira a COORDENADA INICIAL do Robô #{robot} (X,Y) e a DIREÇÃO (N,S,L, O): ");
 
                     locationAndDirection = Console.ReadLine()!.Split(' ');
 
@@ -123,7 +123,7 @@ namespace RobôTupiniquim.ConsoleApp
 
                 do
                 {
-                    Console.Write($"Insira os MOVIMENTOS do Robô #{robot} (E, D M): ");
+                    Console.Write($"\nInsira os MOVIMENTOS do Robô #{robot} (E, D M): ");
                     movements = Console.ReadLine()!.Split(' ');
 
                     success = movements.All(m => "EDM".Contains(char.ToUpper(m[0])));
