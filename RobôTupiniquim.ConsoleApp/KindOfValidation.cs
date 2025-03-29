@@ -75,7 +75,6 @@ namespace RobôTupiniquim.ConsoleApp
         public static void AskValidCommands()
         {
             String[] locationAndDirection;
-            //String[] movements;
             int robot;
             bool success = false;
 
