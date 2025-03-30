@@ -8,17 +8,15 @@
             {
                 Console.Clear();
                 GameVisual.ShowPannel();
-                Console.WriteLine("\n---------------------------------------------------------------------------");
-                Console.WriteLine("Escolha o a LARGURA e a ALTURA do terreno retangular que deseja explorar.");
-                Console.WriteLine("---------------------------------------------------------------------------");
-                Console.WriteLine("Você recebeu permissão para usar DOIS ROBÔS de para sua aventura! Vamos lá!");
-                Console.WriteLine("---------------------------------------------------------------------------");
+                GameVisual.ShowRules();
+                GameVisual.StartScreen();
 
                 KindOfValidation.AreaValidationAndDraw();
                 GameVisual.ShowPannel();
-                GameVisual.ShowRules();
-                GameVisual.StartScreen();
-                KindOfValidation.AskValidCommands();
+
+                KindOfValidation.AskValidCommandsAndKeep();
+                GameVisual.MoveRobots();
+                GameVisual.PrintMap(GameVisual.cartesian);
 
                 Console.WriteLine("\n===========================================================================");
                 Console.Write("Deseja explorar uma nova áera? (S/N): ");

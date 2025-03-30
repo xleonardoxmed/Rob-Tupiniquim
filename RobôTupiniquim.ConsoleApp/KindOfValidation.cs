@@ -10,19 +10,30 @@ namespace RobôTupiniquim.ConsoleApp
 {
     class KindOfValidation
     {
-        public static int chars;
-        public static int Xcoordenate;
-        public static int Ycoordenate;
-        public static char direction;
+        private static int Xcoordenate;
+        private static int Ycoordenate;
+        private static char direction;
+        public static string[] Robot1LocationAndDirection;
+        public static string[] Robot2LocationAndDirection;
         public static int area;
-        public static char[] allChars;
+        public static int width;
+        public static int height;
+        private static char[] allChars;
+        public static char[] robot1Commands;
+        public static char[] robot2Commands;
         public static void AreaValidationAndDraw()
         {
             bool success;
-            int width = 0;
-            int heigth = 0;
+            width = 0;
+            height = 0;
             int answer = 0;
             string ask = "";
+            
+            Console.WriteLine("\n---------------------------------------------------------------------------");
+            Console.WriteLine("Você recebeu permissão para usar DOIS ROBÔS de para sua aventura! Vamos lá!");
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine("Escolha o a LARGURA e a ALTURA do terreno retangular que deseja explorar.");          
+            Console.WriteLine("---------------------------------------------------------------------------");
 
             for (int checks = 0; checks <= 1; checks++)
             {
@@ -52,16 +63,16 @@ namespace RobôTupiniquim.ConsoleApp
                 if (checks == 0)
                     width = answer;
                 else
-                    heigth = answer;
+                    height = answer;
             }
-            area = width * heigth;
+            area = width * height;
             Console.WriteLine($"\n                    A área escolhida é de: {area}m²");
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.WriteLine("\n                       Exemplo ilustrativo:\n ");
             Console.WriteLine($"                              (X,Y)");
-            Console.WriteLine($"                  (0,{heigth})  ------------  ({width}, {heigth})");
+            Console.WriteLine($"                  (0,{height})  ------------  ({width}, {height})");
             Console.WriteLine("                         |            |");
-            Console.WriteLine($"                         |            | {heigth}m");
+            Console.WriteLine($"                         |            | {height}m");
             Console.WriteLine("                         |            |");
             Console.WriteLine($"                  (0,0)   ------------  ({width}, 0)");
             Console.WriteLine($"                               {width}m");
@@ -72,7 +83,7 @@ namespace RobôTupiniquim.ConsoleApp
             Console.Clear();
         }
 
-        public static void AskValidCommands()
+        public static void AskValidCommandsAndKeep()
         {
             String[] locationAndDirection;
             int robot;
@@ -95,16 +106,9 @@ namespace RobôTupiniquim.ConsoleApp
                     locationAndDirection = entry.Split(new char[] { ' ', ',', '(', ')'}, StringSplitOptions.RemoveEmptyEntries);
                     //REMOVE TODOS OS CARACTERES INDESEJADOS E FILTRA O QUE É PEDIDO
 
-                    if (locationAndDirection.Length != 3)
-                    {
-                        Console.WriteLine("---------------------------------------------------------------------------");
-                        Console.WriteLine("Erro! Insira comandos válidos separados por espaços. EX: (Número Número Letra).");
-                        Console.WriteLine("---------------------------------------------------------------------------");
-                        Console.WriteLine("Apenas números inteiros permitidos");
-                        Console.WriteLine("---------------------------------------------------------------------------");
-                        continue;
-                    }
-
+                    if (locationAndDirection.Length != 3)                  
+                        success = false;
+                    
                     success =
                         int.TryParse(locationAndDirection[0], out Xcoordenate) &&
                         int.TryParse(locationAndDirection[1], out Ycoordenate) &&
@@ -114,13 +118,18 @@ namespace RobôTupiniquim.ConsoleApp
                     if (!success || Xcoordenate < 0 || Ycoordenate < 0)
                     {
                         Console.WriteLine("---------------------------------------------------------------------------");
-                        Console.WriteLine("Erro! Insira comandos válidos separados por espaços (SEM VÍRGULA). EX: (Número Número Letra).");
+                        Console.WriteLine("Erro! Insira comandos válidos separados por espaços. EX: (Número Número Letra).");
                         Console.WriteLine("---------------------------------------------------------------------------");
                         Console.WriteLine("Apenas números inteiros permitidos");
                         continue;
                     }
 
                     direction = Char.ToUpper(locationAndDirection[2][0]);
+
+                    if (robot == 1)
+                        Robot1LocationAndDirection = locationAndDirection;
+                    else
+                        Robot2LocationAndDirection = locationAndDirection;
 
                 } while (!success || Xcoordenate < 0 || Ycoordenate < 0);
 
@@ -150,6 +159,11 @@ namespace RobôTupiniquim.ConsoleApp
                         Console.WriteLine("Apenas números inteiros permitidos");
                         continue;
                     }
+
+                    if (robot == 1)
+                        robot1Commands = allChars;
+                    else
+                        robot2Commands = allChars;
 
                 } while (!success);
 
