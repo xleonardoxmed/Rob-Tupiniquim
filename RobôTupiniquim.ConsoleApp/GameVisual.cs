@@ -104,7 +104,7 @@ namespace RobôTupiniquim.ConsoleApp
             int cartesianWidth = KindOfValidation.width;
             int cartesianHeight = KindOfValidation.height;
 
-            char[,] cartesian = new char[cartesianHeight, cartesianWidth];
+            cartesian = new char[cartesianHeight, cartesianWidth];
             //plano bidimensional Y:X
 
             for (int YspaceFiller = 0; YspaceFiller < cartesianHeight; YspaceFiller++)
@@ -141,6 +141,7 @@ namespace RobôTupiniquim.ConsoleApp
         {
           
             Console.Clear();
+            ShowPannel();
 
             for (int counter = 0; counter < cartesian.GetLength(0); counter++) //linhas
             {

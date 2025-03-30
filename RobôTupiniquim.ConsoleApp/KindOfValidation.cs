@@ -118,7 +118,16 @@ namespace RobôTupiniquim.ConsoleApp
                     if (!success || Xcoordenate < 0 || Ycoordenate < 0)
                     {
                         Console.WriteLine("---------------------------------------------------------------------------");
-                        Console.WriteLine("Erro! Insira comandos válidos separados por espaços. EX: (Número Número Letra).");
+                        Console.WriteLine("Erro! Insira comandos válidos (Positivos) separados por espaços. EX: (Número Número Letra).");
+                        Console.WriteLine("---------------------------------------------------------------------------");
+                        Console.WriteLine("Apenas números inteiros permitidos");
+                        continue;
+                    }
+
+                    else if(Xcoordenate > width || Ycoordenate > height)
+                    {
+                        Console.WriteLine("---------------------------------------------------------------------------");
+                        Console.WriteLine($"Erro! Insira coordenadas (positivas) que existam dentro do terreno escolido: {width}:{height}");
                         Console.WriteLine("---------------------------------------------------------------------------");
                         Console.WriteLine("Apenas números inteiros permitidos");
                         continue;
@@ -131,7 +140,7 @@ namespace RobôTupiniquim.ConsoleApp
                     else
                         Robot2LocationAndDirection = locationAndDirection;
 
-                } while (!success || Xcoordenate < 0 || Ycoordenate < 0);
+                } while (!success || Xcoordenate < 0 || Ycoordenate < 0|| Xcoordenate > width || Ycoordenate > height);
 
                 do
                 {
