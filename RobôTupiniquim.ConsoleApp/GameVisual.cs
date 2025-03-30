@@ -121,10 +121,11 @@ namespace RobôTupiniquim.ConsoleApp
 
             //conversões
 
-            cartesian[Yrobot1, Xrobot1] = '1';
-            cartesian[Yrobot2, Xrobot2] = '2';
+            cartesian[Yrobot1, Xrobot1] = TakeSimbolDirection(DirectionRobot1);
+            cartesian[Yrobot2, Xrobot2] = TakeSimbolDirection(DirectionRobot2);
 
             PrintMap(cartesian);
+
             //robô 1
             foreach (char command in KindOfValidation.robot1Commands)
                 ExecuteCommand(ref Xrobot1, ref Yrobot1, ref DirectionRobot1, command, cartesianWidth, cartesianHeight);
@@ -132,14 +133,18 @@ namespace RobôTupiniquim.ConsoleApp
             foreach (char command in KindOfValidation.robot2Commands)
                 ExecuteCommand(ref Xrobot2, ref Yrobot2, ref DirectionRobot2, command, cartesianWidth, cartesianHeight);
 
-            cartesian[Yrobot1, Xrobot1] = '1';
-            cartesian[Yrobot2, Xrobot2] = '2';
+            for (int Y = 0; Y < cartesianHeight; Y++)
+                for (int X = 0; X < cartesianWidth; X++)
+                    cartesian[Y, X] = '.';
+
+            cartesian[Yrobot1, Xrobot1] = TakeSimbolDirection(DirectionRobot1);
+            cartesian[Yrobot2, Xrobot2] = TakeSimbolDirection(DirectionRobot2);
 
             PrintMap(cartesian);
         }
         public static void PrintMap(char[,] cartesian)
         {
-          
+
             Console.Clear();
             ShowPannel();
 
@@ -161,11 +166,11 @@ namespace RobôTupiniquim.ConsoleApp
                 case 'E':
                     direction = TurnLeft(direction);
                     break;
-                
+
                 case 'D':
                     direction = TurnRight(direction);
                     break;
-                
+
                 case 'M':
                     MoveForward(ref X, ref Y, direction, width, height);
                     break;
@@ -202,21 +207,29 @@ namespace RobôTupiniquim.ConsoleApp
         {
             switch (direction)
             {
-                case 'N': if (Y < height - 1) Y++; break; 
-                    // CIMA
-                case 'S': if (Y > 0) Y--; break; 
-                    // BAIXO
+                case 'N': if (Y < height - 1) Y++; break;
+                // CIMA
+                case 'S': if (Y > 0) Y--; break;
+                // BAIXO
                 case 'L': if (X < width - 1) X++; break;
-                    // DIREITA
+                // DIREITA
                 case 'O': if (X > 0) X--; break;
                     // ESQUERDA
             }
         }
 
-        public static void HoleExpedition()
+        public static char TakeSimbolDirection(char direction)
         {
-            GameVisual.MoveRobots();
-            GameVisual.PrintMap(GameVisual.cartesian);
+            switch (direction)
+            {
+                case 'N': return '^';
+                case 'S': return 'v';
+                case 'L': return '>';
+                case 'O': return '<';
+                default: return '!';
+            }
+            ;
+
         }
 
     }

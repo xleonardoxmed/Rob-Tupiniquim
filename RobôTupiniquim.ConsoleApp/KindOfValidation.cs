@@ -10,6 +10,7 @@ namespace RobôTupiniquim.ConsoleApp
 {
     class KindOfValidation
     {
+        public static bool notTheFirstTime = false;
         private static int Xcoordenate;
         private static int Ycoordenate;
         private static char direction;
@@ -28,11 +29,11 @@ namespace RobôTupiniquim.ConsoleApp
             height = 0;
             int answer = 0;
             string ask = "";
-            
+
             Console.WriteLine("\n---------------------------------------------------------------------------");
             Console.WriteLine("Você recebeu permissão para usar DOIS ROBÔS de para sua aventura! Vamos lá!");
             Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine("Escolha o a LARGURA e a ALTURA do terreno retangular que deseja explorar.");          
+            Console.WriteLine("Escolha o a LARGURA e a ALTURA do terreno retangular que deseja explorar.");
             Console.WriteLine("---------------------------------------------------------------------------");
 
             for (int checks = 0; checks <= 1; checks++)
@@ -99,55 +100,68 @@ namespace RobôTupiniquim.ConsoleApp
                 {
                     robot = 2;
                 }
-                do
+
+                if (notTheFirstTime == false)
                 {
-                    Console.Write($"\nInsira a COORDENADA INICIAL do Robô #{robot} (X,Y) e a DIREÇÃO (N,S,L, O): ");
-                    string entry = Console.ReadLine()!;
-                    locationAndDirection = entry.Split(new char[] { ' ', ',', '(', ')'}, StringSplitOptions.RemoveEmptyEntries);
-                    //REMOVE TODOS OS CARACTERES INDESEJADOS E FILTRA O QUE É PEDIDO
-
-                    if (locationAndDirection.Length != 3)                  
-                        success = false;
-                    
-                    success =
-                        int.TryParse(locationAndDirection[0], out Xcoordenate) &&
-                        int.TryParse(locationAndDirection[1], out Ycoordenate) &&
-                        locationAndDirection[2].Length == 1 &&
-                        "NSLO".Contains(Char.ToUpper(locationAndDirection[2][0]));
-
-                    if (!success || Xcoordenate < 0 || Ycoordenate < 0)
+                    do
                     {
-                        Console.WriteLine("---------------------------------------------------------------------------");
-                        Console.WriteLine("Erro! Insira comandos válidos (Positivos) separados por espaços. EX: (Número Número Letra).");
-                        Console.WriteLine("---------------------------------------------------------------------------");
-                        Console.WriteLine("Apenas números inteiros permitidos");
-                        continue;
-                    }
+                        Console.Write($"\nInsira a COORDENADA INICIAL do Robô #{robot} (X,Y) e a DIREÇÃO (N,S,L, O): ");
+                        string entry = Console.ReadLine()!;
+                        locationAndDirection = entry.Split(new char[] { ' ', ',', '(', ')', '.' }, StringSplitOptions.RemoveEmptyEntries);
+                        //REMOVE TODOS OS CARACTERES INDESEJADOS E FILTRA O QUE É PEDIDO
 
-                    else if(Xcoordenate > width || Ycoordenate > height)
-                    {
-                        Console.WriteLine("---------------------------------------------------------------------------");
-                        Console.WriteLine($"Erro! Insira coordenadas (positivas) que existam dentro do terreno escolido: {width}:{height}");
-                        Console.WriteLine("---------------------------------------------------------------------------");
-                        Console.WriteLine("Apenas números inteiros permitidos");
-                        continue;
-                    }
+                        if (locationAndDirection.Length != 3)
+                        {
+                            Console.WriteLine("---------------------------------------------------------------------------");
+                            Console.WriteLine("Erro! Insira comandos válidos (Positivos) separados por espaços. EX: (Número Número Letra).");
+                            Console.WriteLine("---------------------------------------------------------------------------");
+                            Console.WriteLine("Apenas números inteiros permitidos");
+                            continue;
+                        }
 
-                    direction = Char.ToUpper(locationAndDirection[2][0]);
+                      
+                        success =
+                            int.TryParse(locationAndDirection[0], out Xcoordenate) &&
+                            int.TryParse(locationAndDirection[1], out Ycoordenate) &&
+                            locationAndDirection[2].Length == 1 &&
+                            "NSLO".Contains(Char.ToUpper(locationAndDirection[2][0]));
 
-                    if (robot == 1)
-                        Robot1LocationAndDirection = locationAndDirection;
-                    else
-                        Robot2LocationAndDirection = locationAndDirection;
+                        if (!success || Xcoordenate < 0 || Ycoordenate < 0)
+                        {
+                            Console.WriteLine("---------------------------------------------------------------------------");
+                            Console.WriteLine("Erro! Insira comandos válidos (Positivos) separados por espaços. EX: (Número Número Letra).");
+                            Console.WriteLine("---------------------------------------------------------------------------");
+                            Console.WriteLine("Apenas números inteiros permitidos");
+                            continue;
+                        }
 
-                } while (!success || Xcoordenate < 0 || Ycoordenate < 0|| Xcoordenate > width || Ycoordenate > height);
+                        else if (Xcoordenate > width || Ycoordenate > height)
+                        {
+                            Console.WriteLine("---------------------------------------------------------------------------");
+                            Console.WriteLine($"Erro! Insira coordenadas (positivas) que existam dentro do terreno escolido: {width}:{height}");
+                            Console.WriteLine("---------------------------------------------------------------------------");
+                            Console.WriteLine("Apenas números inteiros permitidos");
+                            continue;
+                        }
+
+                        direction = Char.ToUpper(locationAndDirection[2][0]);
+                        locationAndDirection[2] = direction.ToString();
+
+                        if (robot == 1)
+                            Robot1LocationAndDirection = locationAndDirection;
+
+                        else
+                            Robot2LocationAndDirection = locationAndDirection;
+
+                    } while (!success || Xcoordenate < 0 || Ycoordenate < 0 || Xcoordenate > width || Ycoordenate > height);
+                }
 
                 do
                 {
                     Console.Write($"\nInsira os MOVIMENTOS do Robô #{robot} (E, D M): ");
 
                     string allMovements = Console.ReadLine()!.ToUpper();
-                    allChars = allMovements.Where(m => m != ' ' && m != '-' && m != ',').ToArray();
+                    allChars = allMovements.Where(m => m != ' ' && m != '-' && m != ',' && m != '.').ToArray();
 
 
                     for (int charChecks = 0; charChecks < allChars.Length; charChecks++)
@@ -159,13 +173,12 @@ namespace RobôTupiniquim.ConsoleApp
                         }
                         // '_' SERVE PARA VARIÁVEIS DESCARTÁVEIS // TryParse espera uma string, pra isso: ToString();           
                     }
-               
+
                     if (!success)
                     {
                         Console.WriteLine("---------------------------------------------------------------------------");
                         Console.WriteLine("Erro! Apenas os movimentos 'E' (Esquerda), 'D' (Direita), e 'M' (Mover) são válidos.");
                         Console.WriteLine("---------------------------------------------------------------------------");
-                        Console.WriteLine("Apenas números inteiros permitidos");
                         continue;
                     }
 
