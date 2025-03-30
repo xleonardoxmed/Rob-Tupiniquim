@@ -213,5 +213,11 @@ namespace RobôTupiniquim.ConsoleApp
             }
         }
 
+        public static void HoleExpedition()
+        {
+            GameVisual.MoveRobots();
+            GameVisual.PrintMap(GameVisual.cartesian);
+        }
+
     }
 }

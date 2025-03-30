@@ -15,8 +15,8 @@
                 GameVisual.ShowPannel();
 
                 KindOfValidation.AskValidCommandsAndKeep();
-                GameVisual.MoveRobots();
-                GameVisual.PrintMap(GameVisual.cartesian);
+                GameVisual.HoleExpedition();
+               
 
                 Console.WriteLine("\n===========================================================================");
                 Console.Write("Deseja explorar uma nova áera? (S/N): ");
