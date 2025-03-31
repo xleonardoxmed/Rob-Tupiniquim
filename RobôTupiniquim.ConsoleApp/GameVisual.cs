@@ -275,5 +275,15 @@ namespace RobôTupiniquim.ConsoleApp
             return (x1 == x2 && y1 == y2);
         }
 
+        public static bool AskToPlayAgain()
+        {
+            Console.WriteLine("\n===========================================================================");
+            Console.Write("Deseja jogar de novo e explorar uma nova área? (S/N): ");
+            Console.WriteLine("\n===========================================================================");
+            string toContinue = Console.ReadLine()!.ToUpper();
+
+            return toContinue == "S";
+        }
+
     }
 }
