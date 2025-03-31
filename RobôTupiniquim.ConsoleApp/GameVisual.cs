@@ -148,9 +148,9 @@ namespace RobôTupiniquim.ConsoleApp
             Console.Clear();
             ShowPannel();
 
-            for (int counter = 0; counter < cartesian.GetLength(0); counter++) //linhas
+            for (int counter = KindOfValidation.height - 1; counter >= 0; counter--) //linhas
             {
-                for (int counter2 = 0; counter2 < cartesian.GetLength(1); counter2++) // colunas
+                for (int counter2 = 0; counter2 < KindOfValidation.width; counter2++) // colunas
                 {
                     Console.Write(cartesian[counter, counter2] + " "); // impressão     
                 }
