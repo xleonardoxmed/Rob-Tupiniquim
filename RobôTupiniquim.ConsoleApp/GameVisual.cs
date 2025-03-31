@@ -258,7 +258,6 @@ namespace RobôTupiniquim.ConsoleApp
             int y2 = int.Parse(robot2Position[1]);
 
             return (x1 == x2 && y1 == y2);
-
         }
 
     }
