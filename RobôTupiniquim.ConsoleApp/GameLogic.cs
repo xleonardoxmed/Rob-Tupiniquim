@@ -10,9 +10,7 @@ namespace RobôTupiniquim.ConsoleApp
     {
         public static void InitializeGame()
         {
-            KindOfValidation.AreaValidationAndDraw();
-            GameVisual.ShowPannel();
-            KindOfValidation.AskValidCommandsAndKeep();
+            KindsOfValidation.AskValidCommandsAndKeep();
             GameVisual.MoveRobots();
         }
 
@@ -27,8 +25,8 @@ namespace RobôTupiniquim.ConsoleApp
                     break;
 
                 // EXPEDIÇÃO CONTINUA
-                KindOfValidation.notTheFirstTime = true;
-                KindOfValidation.AskValidCommandsAndKeep();
+                KindsOfValidation.notTheFirstTime = true;
+                KindsOfValidation.AskValidCommandsAndKeep();
                 GameVisual.MoveRobots();
 
                 // CHECAGEM DE COLISÃO

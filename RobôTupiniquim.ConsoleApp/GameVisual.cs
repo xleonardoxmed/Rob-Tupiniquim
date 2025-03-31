@@ -102,8 +102,8 @@ namespace RobôTupiniquim.ConsoleApp
 
         public static void MoveRobots()
         {
-            int cartesianWidth = KindOfValidation.width;
-            int cartesianHeight = KindOfValidation.height;
+            int cartesianWidth = KindsOfValidation.width;
+            int cartesianHeight = KindsOfValidation.height;
 
             cartesian = new char[cartesianHeight, cartesianWidth];
             //plano bidimensional Y:X
@@ -112,13 +112,13 @@ namespace RobôTupiniquim.ConsoleApp
                 for (int XspaceFiller = 0; XspaceFiller < cartesianWidth; XspaceFiller++)
                     cartesian[YspaceFiller, XspaceFiller] = '.';
 
-            int Xrobot1 = int.Parse(KindOfValidation.Robot1LocationAndDirection[0]);
-            int Yrobot1 = int.Parse(KindOfValidation.Robot1LocationAndDirection[1]);
-            char DirectionRobot1 = KindOfValidation.Robot1LocationAndDirection[2][0];
+            int Xrobot1 = int.Parse(KindsOfValidation.Robot1LocationAndDirection[0]);
+            int Yrobot1 = int.Parse(KindsOfValidation.Robot1LocationAndDirection[1]);
+            char DirectionRobot1 = KindsOfValidation.Robot1LocationAndDirection[2][0];
 
-            int Xrobot2 = int.Parse(KindOfValidation.Robot2LocationAndDirection[0]);
-            int Yrobot2 = int.Parse(KindOfValidation.Robot2LocationAndDirection[1]);
-            char DirectionRobot2 = KindOfValidation.Robot2LocationAndDirection[2][0];
+            int Xrobot2 = int.Parse(KindsOfValidation.Robot2LocationAndDirection[0]);
+            int Yrobot2 = int.Parse(KindsOfValidation.Robot2LocationAndDirection[1]);
+            char DirectionRobot2 = KindsOfValidation.Robot2LocationAndDirection[2][0];
 
             //conversões
 
@@ -128,20 +128,20 @@ namespace RobôTupiniquim.ConsoleApp
             PrintMap(cartesian);
 
             //robô 1
-            foreach (char command in KindOfValidation.robot1Commands)
+            foreach (char command in KindsOfValidation.robot1Commands)
                 ExecuteCommand(ref Xrobot1, ref Yrobot1, ref DirectionRobot1, command, cartesianWidth, cartesianHeight);
             //robô 2
-            foreach (char command in KindOfValidation.robot2Commands)
+            foreach (char command in KindsOfValidation.robot2Commands)
                 ExecuteCommand(ref Xrobot2, ref Yrobot2, ref DirectionRobot2, command, cartesianWidth, cartesianHeight);
 
-            KindOfValidation.Robot1LocationAndDirection = new string[]
+            KindsOfValidation.Robot1LocationAndDirection = new string[]
             {
                 Xrobot1.ToString(),
                 Yrobot1.ToString(),
                 DirectionRobot1.ToString()
             };
 
-            KindOfValidation.Robot2LocationAndDirection = new string[]
+            KindsOfValidation.Robot2LocationAndDirection = new string[]
            {
                 Xrobot2.ToString(),
                 Yrobot2.ToString(),
@@ -163,15 +163,15 @@ namespace RobôTupiniquim.ConsoleApp
             Console.Clear();
             ShowPannel();
 
-            int Xrobot1 = int.Parse(KindOfValidation.Robot1LocationAndDirection[0]);
-            int Yrobot1 = int.Parse(KindOfValidation.Robot1LocationAndDirection[1]);
+            int Xrobot1 = int.Parse(KindsOfValidation.Robot1LocationAndDirection[0]);
+            int Yrobot1 = int.Parse(KindsOfValidation.Robot1LocationAndDirection[1]);
 
-            int Xrobot2 = int.Parse(KindOfValidation.Robot2LocationAndDirection[0]);
-            int Yrobot2 = int.Parse(KindOfValidation.Robot2LocationAndDirection[1]);
+            int Xrobot2 = int.Parse(KindsOfValidation.Robot2LocationAndDirection[0]);
+            int Yrobot2 = int.Parse(KindsOfValidation.Robot2LocationAndDirection[1]);
 
-            for (int counter = KindOfValidation.height - 1; counter >= 0; counter--) // Linhas
+            for (int counter = KindsOfValidation.height - 1; counter >= 0; counter--) // Linhas
             {
-                for (int counter2 = 0; counter2 < KindOfValidation.width; counter2++) // Colunas
+                for (int counter2 = 0; counter2 < KindsOfValidation.width; counter2++) // Colunas
                 {
                     if (counter == Yrobot1 && counter2 == Xrobot1)
                         Console.ForegroundColor = ConsoleColor.Green; // COR DO ROBÔ 1
@@ -264,8 +264,8 @@ namespace RobôTupiniquim.ConsoleApp
         }
         public static bool ExplodeIFCollide()
         {
-            string[] robot1Position = KindOfValidation.Robot1LocationAndDirection;
-            string[] robot2Position = KindOfValidation.Robot2LocationAndDirection;
+            string[] robot1Position = KindsOfValidation.Robot1LocationAndDirection;
+            string[] robot2Position = KindsOfValidation.Robot2LocationAndDirection;
 
             int x1 = int.Parse(robot1Position[0]);
             int y1 = int.Parse(robot1Position[1]);
@@ -285,5 +285,19 @@ namespace RobôTupiniquim.ConsoleApp
             return toContinue == "S";
         }
 
+        public static void DrawAreaExample()
+        {
+            GameVisual.ShowPannel();
+            Console.WriteLine($"\n                    A área escolhida é de: {KindsOfValidation.area}m²");
+            Console.WriteLine("\n                       Exemplo ilustrativo:\n ");
+            Console.WriteLine($"                              (X,Y)");
+            Console.WriteLine($"                  (0,{KindsOfValidation.height})  ------------  ({KindsOfValidation.width}, {KindsOfValidation.height})");
+            Console.WriteLine("                         |            |");
+            Console.WriteLine($"                         |            | {KindsOfValidation.height}m");
+            Console.WriteLine("                         |            |");
+            Console.WriteLine($"                  (0,0)   ------------  ({KindsOfValidation.width}, 0)");
+            Console.WriteLine($"                               {KindsOfValidation.width}m");
+            Console.WriteLine("---------------------------------------------------------------------------");
+        }
     }
 }

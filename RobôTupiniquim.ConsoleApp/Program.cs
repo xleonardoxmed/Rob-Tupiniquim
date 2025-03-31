@@ -10,9 +10,11 @@
                 GameVisual.ShowPannel();
                 GameVisual.ShowRules();
                 GameVisual.StartScreen();
-                GameLogic.InitializeGame();
-                GameLogic.ExploreArea();
-                if (!GameVisual.AskToPlayAgain())
+                KindsOfValidation.AreaValidation(); 
+                GameVisual.DrawAreaExample(); 
+                GameLogic.InitializeGame(); 
+                GameLogic.ExploreArea(); 
+                if (!GameVisual.AskToPlayAgain()) 
                     break;
             }
 

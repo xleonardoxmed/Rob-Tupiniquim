@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RobôTupiniquim.ConsoleApp
 {
-    class KindOfValidation
+    class KindsOfValidation
     {
         public static bool notTheFirstTime = false;
         private static int Xcoordenate;
@@ -22,7 +22,7 @@ namespace RobôTupiniquim.ConsoleApp
         private static char[] allChars;
         public static char[] robot1Commands;
         public static char[] robot2Commands;
-        public static void AreaValidationAndDraw()
+        public static void AreaValidation()
         {
             bool success;
             width = 0;
@@ -33,19 +33,13 @@ namespace RobôTupiniquim.ConsoleApp
             Console.WriteLine("\n---------------------------------------------------------------------------");
             Console.WriteLine("Você recebeu permissão para usar DOIS ROBÔS de para sua aventura! Vamos lá!");
             Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine("Escolha o a LARGURA e a ALTURA do terreno retangular que deseja explorar.");
+            Console.WriteLine("Escolha a LARGURA e a ALTURA do terreno retangular que deseja explorar.");
             Console.WriteLine("---------------------------------------------------------------------------");
 
             for (int checks = 0; checks <= 1; checks++)
             {
-                if (checks == 0)
-                {
-                    ask = "LARGURA";
-                }
-                else
-                {
-                    ask = "ALTURA";
-                }
+                ask = (checks == 0) ? "LARGURA" : "ALTURA";
+
                 do
                 {
                     Console.Write($"\n                             {ask}: ");
@@ -56,7 +50,6 @@ namespace RobôTupiniquim.ConsoleApp
                     {
                         Console.WriteLine("Erro! Somente números inteiros e positivos serão aceitos.");
                         Console.WriteLine("---------------------------------------------------------------------------");
-                        continue;
                     }
 
                 } while (!success || answer <= 0);
@@ -66,17 +59,9 @@ namespace RobôTupiniquim.ConsoleApp
                 else
                     height = answer;
             }
+
             area = width * height;
             Console.WriteLine($"\n                    A área escolhida é de: {area}m²");
-            Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine("\n                       Exemplo ilustrativo:\n ");
-            Console.WriteLine($"                              (X,Y)");
-            Console.WriteLine($"                  (0,{height})  ------------  ({width}, {height})");
-            Console.WriteLine("                         |            |");
-            Console.WriteLine($"                         |            | {height}m");
-            Console.WriteLine("                         |            |");
-            Console.WriteLine($"                  (0,0)   ------------  ({width}, 0)");
-            Console.WriteLine($"                               {width}m");
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.WriteLine("                 Digite qualquer tecla para continuar");
             Console.WriteLine("---------------------------------------------------------------------------");
@@ -120,7 +105,9 @@ namespace RobôTupiniquim.ConsoleApp
                             Console.WriteLine("Erro! Insira comandos válidos (Positivos) separados por espaços. EX: (Número Número Letra).");
                             Console.WriteLine("---------------------------------------------------------------------------");
                             Console.WriteLine("Apenas números inteiros permitidos");
+                            success = false;
                             continue;
+                           
                         }
 
                       
