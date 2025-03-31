@@ -162,7 +162,7 @@ namespace RobôTupiniquim.ConsoleApp
 
                     string allMovements = Console.ReadLine()!.ToUpper();
                     allChars = allMovements.Where(m => m != ' ' && m != '-' && m != ',' && m != '.').ToArray();
-
+                    success = true;
 
                     for (int charChecks = 0; charChecks < allChars.Length; charChecks++)
                     {

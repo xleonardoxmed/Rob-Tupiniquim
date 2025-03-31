@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,6 +134,20 @@ namespace RobôTupiniquim.ConsoleApp
             foreach (char command in KindOfValidation.robot2Commands)
                 ExecuteCommand(ref Xrobot2, ref Yrobot2, ref DirectionRobot2, command, cartesianWidth, cartesianHeight);
 
+            KindOfValidation.Robot1LocationAndDirection = new string[]
+            {
+                Xrobot1.ToString(),
+                Yrobot1.ToString(),
+                DirectionRobot1.ToString()
+            };
+
+            KindOfValidation.Robot2LocationAndDirection = new string[]
+           {
+                Xrobot2.ToString(),
+                Yrobot2.ToString(),
+                DirectionRobot2.ToString()
+           };
+
             for (int Y = 0; Y < cartesianHeight; Y++)
                 for (int X = 0; X < cartesianWidth; X++)
                     cartesian[Y, X] = '.';
@@ -220,15 +235,29 @@ namespace RobôTupiniquim.ConsoleApp
 
         public static char TakeSimbolDirection(char direction)
         {
+
             switch (direction)
-            {
+            {    
                 case 'N': return '^';
                 case 'S': return 'v';
                 case 'L': return '>';
                 case 'O': return '<';
-                default: return '!';
-            }
+                default: return '!';                  
+            }  
             ;
+
+        }
+        public static bool ExplodeIFCollide()
+        {
+            string[] robot1Position = KindOfValidation.Robot1LocationAndDirection;
+            string[] robot2Position = KindOfValidation.Robot2LocationAndDirection;
+
+            int x1 = int.Parse(robot1Position[0]);
+            int y1 = int.Parse(robot1Position[1]);
+            int x2 = int.Parse(robot2Position[0]);
+            int y2 = int.Parse(robot2Position[1]);
+
+            return (x1 == x2 && y1 == y2);
 
         }
 
