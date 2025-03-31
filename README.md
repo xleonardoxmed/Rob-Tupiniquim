@@ -143,19 +143,19 @@ O mapa de 10x10 pode ser visualizado, com a posição dos robôs sendo representada
 ```
 git clone https://github.com/xleonardoxmed/Rob-Tupiniquim.git
 ```
-- Navegue até a pasta raiz da solução
+Navegue até a pasta raiz da solução
 ```
 cd RobôTupiniquim
 ```
-- Restaure as dependências
+Restaure as dependências
 ```
 dotnet restore
 ```
-- Navegue até a pasta do projeto
+Navegue até a pasta do projeto
 ```
 cd RobôTupiniquim.ConsoleApp
 ```
-- Execute o projeto
+Execute o projeto
 ```
 dotnet run
 ```
