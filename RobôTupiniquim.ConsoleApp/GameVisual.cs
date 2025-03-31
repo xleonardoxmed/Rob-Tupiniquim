@@ -163,13 +163,28 @@ namespace RobôTupiniquim.ConsoleApp
             Console.Clear();
             ShowPannel();
 
-            for (int counter = KindOfValidation.height - 1; counter >= 0; counter--) //linhas
+            int Xrobot1 = int.Parse(KindOfValidation.Robot1LocationAndDirection[0]);
+            int Yrobot1 = int.Parse(KindOfValidation.Robot1LocationAndDirection[1]);
+
+            int Xrobot2 = int.Parse(KindOfValidation.Robot2LocationAndDirection[0]);
+            int Yrobot2 = int.Parse(KindOfValidation.Robot2LocationAndDirection[1]);
+
+            for (int counter = KindOfValidation.height - 1; counter >= 0; counter--) // Linhas
             {
-                for (int counter2 = 0; counter2 < KindOfValidation.width; counter2++) // colunas
+                for (int counter2 = 0; counter2 < KindOfValidation.width; counter2++) // Colunas
                 {
-                    Console.Write(cartesian[counter, counter2] + " "); // impressão     
+                    if (counter == Yrobot1 && counter2 == Xrobot1)
+                        Console.ForegroundColor = ConsoleColor.Green; // COR DO ROBÔ 1
+                    else if (counter == Yrobot2 && counter2 == Xrobot2)
+                        Console.ForegroundColor = ConsoleColor.Red;   // COR DO ROBÔ 2
+                    else
+                        Console.ResetColor(); 
+
+                    Console.Write(cartesian[counter, counter2] + " "); // Impressão     
+
+                    Console.ResetColor(); //COR PADRÃO
                 }
-                Console.WriteLine(); // pula
+                Console.WriteLine(); // PULA
             }
 
         }

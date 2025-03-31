@@ -105,7 +105,11 @@ namespace RobôTupiniquim.ConsoleApp
                 {
                     do
                     {
-                        Console.Write($"\nInsira a COORDENADA INICIAL do Robô #{robot} (X,Y) e a DIREÇÃO (N,S,L, O): ");
+                        Console.Write("\nInsira a COORDENADA INICIAL do ");
+                        Console.ForegroundColor = (robot == 1) ? ConsoleColor.Green : ConsoleColor.Red;
+                        Console.Write($"Robô #{robot}");
+                        Console.ResetColor();
+                        Console.Write(" (X,Y) e a DIREÇÃO (N,S,L,O): ");
                         string entry = Console.ReadLine()!;
                         locationAndDirection = entry.Split(new char[] { ' ', ',', '(', ')', '.' }, StringSplitOptions.RemoveEmptyEntries);
                         //REMOVE TODOS OS CARACTERES INDESEJADOS E FILTRA O QUE É PEDIDO
@@ -158,7 +162,12 @@ namespace RobôTupiniquim.ConsoleApp
 
                 do
                 {
-                    Console.Write($"\nInsira os MOVIMENTOS do Robô #{robot} (E, D M): ");
+                    Console.Write("\nInsira os MOVIMENTOS do");
+                    Console.ForegroundColor = (robot == 1) ? ConsoleColor.Green : ConsoleColor.Red;
+                    Console.Write($" Robô #{robot}");
+                    Console.ResetColor();
+                    Console.Write("(E, D M):  ");
+                    
 
                     string allMovements = Console.ReadLine()!.ToUpper();
                     allChars = allMovements.Where(m => m != ' ' && m != '-' && m != ',' && m != '.').ToArray();
